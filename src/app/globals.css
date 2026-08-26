@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f5f0;
+  --foreground: #20332f;
+  --color-primary: #cf6f48;
+  --color-primary-light: #eeeae2;
+  --color-primary-200: #e8a486;
+  --color-primary-hover: #b95835;
+  --color-secondary: #20332f;
+  --color-secondary-100: #eef5ef;
+  --color-secondary-150: #56705f;
+  --color-secondary-200:#354740;
+  --color-tertiary: #819087;
+  --color-yellow-50:#e5e1d8;
+  --color-yellow-100:#ddd9d1;
+  --color-yellow-200:#f7f4ee;
+  --color-yellow-300:#faf9f6;
+  --color-green-50:#9aa49e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--color-primary);
+  --color-primary-200: var(--color-primary-200);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-100: var(--color-secondary-100);
+  --color-secondary-150: var(--color-secondary-150);
+  --color-secondary-200: var(--color-secondary-200);
+  --color-tertiary: var(--color-tertiary);
+  --color-yellow-50: var(--color-yellow-50);
+  --color-yellow-100: var(--color-yellow-100);
+  --color-yellow-200: var(--color-yellow-200);
+  --color-yellow-300: var(--color-yellow-300);
+  --color-green-50: var(--color-green-50)
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@utility scrollbar-hide {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+button, a { cursor: pointer; }
