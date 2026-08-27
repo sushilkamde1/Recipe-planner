@@ -82,8 +82,6 @@ The application is designed to work across:
 - Tablet
 - Mobile
 
----
-
 # 🛠️ Tech Stack
 
 - **Next.js 16+**
