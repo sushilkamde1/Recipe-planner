@@ -94,7 +94,7 @@ function RecipePlanner() {
             <button
               type="button"
               onClick={addMeal}
-              className="rounded-xl bg-secondary-200 px-5 py-3 text-sm font-bold text-white transition hover:bg-[#293a34]"
+              className="rounded-xl bg-secondary-200 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-100"
             >
               Add recipe
             </button>

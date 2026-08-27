@@ -1,5 +1,5 @@
 import Image from "next/image";
-import RecipeHero from "@/assets/recipe-hero.jpg";
+import RecipeHero from "@/assets/recipe-hero.webp";
 import SearchInput from "./custom-ui/SearchInput";
 
 function Header() {

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Card from "@/components/recipe-card/Card";
+import Card from "@/components/recipe-card/RecipeCards";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { useRecipe } from "@/store/RecipeContext";
 

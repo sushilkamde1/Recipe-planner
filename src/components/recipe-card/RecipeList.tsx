@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { Recipe } from "@/types/recipe.types";
-import Card from "./Card";
+import RecipeCards from "./RecipeCards";
 import { useRecipe } from "@/store/RecipeContext";
 
-function RecipeCard() {
+function RecipeList() {
   const [activeCategory, setActiveCategory] = useState("All");
   const { recipes, searchResults, isSearchingRecipes } = useRecipe();
   const categories = ["All", "Easy", "Medium", "Hard"];
@@ -56,7 +56,7 @@ function RecipeCard() {
       ) : recipes.length === 0 ? (
         <p className="text-center text-lg text-tertiary">No recipes found.</p>
       ) : (
-        <Card
+        <RecipeCards
           filteredRecipes={categoryRecipes}
           activeCategory={activeCategory}
         />
@@ -65,4 +65,4 @@ function RecipeCard() {
   );
 }
 
-export default RecipeCard;
+export default RecipeList;

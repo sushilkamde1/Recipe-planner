@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
 import { useRecipe } from "@/store/RecipeContext";
 
 type NavItem = {
@@ -20,9 +22,10 @@ const navItems: NavItem[] = [
 function Navbar() {
   const { selectedIngredients } = useRecipe();
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="mx-auto flex max-w-345 items-center justify-between px-5   py-5 sm:px-8 lg:px-12">
+    <header className="mx-auto flex max-w-345 flex-wrap items-center justify-between px-5 py-5 sm:px-8 lg:px-12">
       <Link
         href="/"
         className="flex items-center gap-3"
@@ -59,6 +62,43 @@ function Navbar() {
           );
         })}
       </nav>
+      <button
+        type="button"
+        onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+        aria-expanded={isMenuOpen}
+        aria-controls="mobile-navigation"
+        aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+        className="grid h-10 w-10 place-items-center rounded-lg text-2xl text-secondary-200 md:hidden"
+      >
+        {isMenuOpen ? <FiX /> : <FiMenu />}
+      </button>
+      {isMenuOpen && (
+        <nav
+          id="mobile-navigation"
+          className="basis-full border-t border-[#e9e6df] pt-3 md:hidden"
+        >
+          <div className="flex flex-col text-sm font-semibold text-[#66746d]">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`relative flex items-center justify-between border-b border-[#f0eee8] px-2 py-3 hover:text-primary ${isActive ? "text-primary" : ""}`}
+                >
+                  {item.name}
+                  {item.href === "/cart" && selectedIngredients.length > 0 && (
+                    <span className="grid h-5 min-w-5 place-items-center rounded-full bg-primary-200 px-1 text-[10px] font-bold text-secondary-200">
+                      {selectedIngredients.length}
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

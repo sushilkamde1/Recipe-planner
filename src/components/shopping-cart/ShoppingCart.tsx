@@ -157,7 +157,7 @@ function ShoppingCart() {
                 Your cart is waiting for a recipe.
               </p>
               <button
-                className="mt-4 inline-block rounded-full bg-secondary-200 px-5 py-3 text-sm font-bold text-white hover:bg-[#293a34]"
+                className="mt-4 inline-block rounded-full bg-secondary-200 px-5 py-3 text-sm font-bold text-white hover:bg-green-100"
                 onClick={() => router.back()}
               >
                 Go to ingredients list

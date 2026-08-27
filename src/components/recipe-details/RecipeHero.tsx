@@ -136,7 +136,7 @@ function RecipeHero({ recipe }: { recipe: Recipe }) {
             <button
               type="button"
               onClick={handlePlannerClick}
-              className="rounded-full bg-secondary-200 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#293a34]"
+              className="rounded-full bg-secondary-200 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-green-100"
             >
               {isAddedToPlanner ? "Go to planner" : "Add to planner"}
             </button>

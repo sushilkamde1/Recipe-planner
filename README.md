@@ -44,6 +44,7 @@ Users can:
 - Remove recipes from favorites
 - View all favorite recipes
 - Favorite recipes from recipe cards and recipe detail pages
+- Select the ingredients from the list and add to cart
 
 Favorites are persisted using `localStorage`, so they remain available after refreshing the browser.
 
@@ -67,6 +68,7 @@ Features include:
 - De-duplicates ingredients
 - Displays how many planned recipes use an ingredient
 - Check off ingredients
+- Card Virtualization
 - Pagination for large ingredient lists
 - Empty state when no meals are planned
 
@@ -84,7 +86,7 @@ The application is designed to work across:
 
 # 🛠️ Tech Stack
 
-- **Next.js 13+**
+- **Next.js 16+**
 - **Next.js App Router**
 - **TypeScript**
 - **React**
@@ -94,5 +96,6 @@ The application is designed to work across:
 - **JSON mock data**
 - **Next.js Image component**
 - **React Icons**
+- **react-virtuoso**
 
 No external state management library is used.
