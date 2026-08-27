@@ -6,7 +6,7 @@ The application allows users to browse recipes, search recipes, save favorites, 
 
 ## 🌐 Live Demo
 
-👉 **[View Recipe & Meal Planner](https://recipe-planner-puce.vercel.app/planner)**
+👉 **[View Recipe & Meal Planner](https://recipe-planner-puce.vercel.app)**
 
 ## 🚀 Features
 
