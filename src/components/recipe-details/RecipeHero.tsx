@@ -34,7 +34,7 @@ function RecipeHero({ recipe }: { recipe: Recipe }) {
   };
   return (
     <section className="mx-auto max-w-7xl px-6 py-7">
-      <div className="grid overflow-hidden rounded-3xl bg-white shadow-[0_10px_30px_rgba(53,71,64,0.06)] md:grid-cols-[0.85fr_1.15fr]">
+      <div className="grid overflow-hidden rounded-3xl bg-white shadow-[0_0.625rem_1.875rem_rgba(53,71,64,0.06)] md:grid-cols-[0.85fr_1.15fr]">
         {/* Image */}
         <div className="relative h-70 md:h-90">
           <Image
@@ -48,7 +48,7 @@ function RecipeHero({ recipe }: { recipe: Recipe }) {
           <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
 
           {/* Meal type */}
-          <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest text-primary">
+          <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[0.563rem] font-bold uppercase tracking-widest text-primary">
             {recipe.mealType.join(", ")}
           </span>
         </div>
@@ -56,7 +56,7 @@ function RecipeHero({ recipe }: { recipe: Recipe }) {
         {/* Recipe information */}
         <div className="flex flex-col justify-center p-5 sm:p-6">
           {/* Category */}
-          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary">
+          <p className="text-[0.625rem] font-bold uppercase tracking-[0.18em] text-primary">
             {recipe.cuisine} Cuisine
           </p>
 
@@ -87,28 +87,28 @@ function RecipeHero({ recipe }: { recipe: Recipe }) {
           {/* Stats */}
           <div className="mt-5 grid grid-cols-4 gap-2">
             <div className="rounded-xl bg-yellow-200 px-2 py-2.5 text-center">
-              <p className="text-[10px] text-tertiary">Prep</p>
+              <p className="text-[0.625rem] text-tertiary">Prep</p>
               <p className="mt-0.5 text-xs font-bold text-secondary-200">
                 {recipe.prepTimeMinutes}m
               </p>
             </div>
 
             <div className="rounded-xl bg-yellow-200 px-2 py-2.5 text-center">
-              <p className="text-[10px] text-tertiary">Cook</p>
+              <p className="text-[0.625rem] text-tertiary">Cook</p>
               <p className="mt-0.5 text-xs font-bold text-secondary-200">
                 {recipe.cookTimeMinutes}m
               </p>
             </div>
 
             <div className="rounded-xl bg-yellow-200 px-2 py-2.5 text-center">
-              <p className="text-[10px] text-tertiary">Serves</p>
+              <p className="text-[0.625rem] text-tertiary">Serves</p>
               <p className="mt-0.5 text-xs font-bold text-secondary-200">
                 {recipe.servings}
               </p>
             </div>
 
             <div className="rounded-xl bg-yellow-200 px-2 py-2.5 text-center">
-              <p className="text-[10px] text-tertiary">Calories</p>
+              <p className="text-[0.625rem] text-tertiary">Calories</p>
               <p className="mt-0.5 text-xs font-bold text-secondary-200">
                 {recipe.caloriesPerServing}
               </p>

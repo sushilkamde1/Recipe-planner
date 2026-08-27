@@ -15,7 +15,7 @@ function RecipeInstruction({ recipe }: { recipe: Recipe }) {
             )}
           </div>
 
-          <p className="pt-2 text-[15px] leading-7 text-[#53645c]">
+          <p className="pt-2 text-[0.938rem] leading-7 text-[#53645c]">
             {instruction}
           </p>
         </div>

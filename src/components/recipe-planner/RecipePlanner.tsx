@@ -50,7 +50,7 @@ function RecipePlanner() {
           </Link>
         </div>
 
-        <section className="mt-8 rounded-3xl bg-white p-5 shadow-[0_8px_30px_rgba(53,71,64,0.05)] sm:p-7">
+        <section className="mt-8 rounded-3xl bg-white p-5 shadow-[0_0.5rem_1.875rem_rgba(53,71,64,0.05)] sm:p-7">
           <div className="grid gap-3 md:grid-cols-[1.5fr_1fr_1fr_auto] md:items-end">
             <label className="text-sm font-semibold text-secondary-200">
               Recipe
@@ -104,7 +104,7 @@ function RecipePlanner() {
         </section>
 
         {unassignedMeals.length > 0 && (
-          <section className="mt-8 rounded-3xl bg-white p-5 shadow-[0_8px_30px_rgba(53,71,64,0.05)] sm:p-7">
+          <section className="mt-8 rounded-3xl bg-white p-5 shadow-[0_0.5rem_1.875rem_rgba(53,71,64,0.05)] sm:p-7">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
                 Ready to place
@@ -196,7 +196,7 @@ function RecipePlanner() {
                           className="flex items-start justify-between gap-3 rounded-xl bg-yellow-200 p-3"
                         >
                           <div>
-                            <p className="text-[10px] font-bold uppercase tracking-wider text-primary">
+                            <p className="text-[0.625rem] font-bold uppercase tracking-wider text-primary">
                               {meal.slot || "Flexible meal"}
                             </p>
                             <Link

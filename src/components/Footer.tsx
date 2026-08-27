@@ -12,12 +12,12 @@ function Footer() {
               className="flex items-center gap-3"
               aria-label="Recipe Planner home"
             >
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-[#d6e3d7]">
+              <span className="grid h-10 w-10 place-items-center">
                 <Image
                   src="/logo.svg"
                   alt="Recipe Planner logo"
-                  width={20}
-                  height={20}
+                  width={45}
+                  height={45}
                 />
               </span>
               <span className="font-serif text-xl font-bold tracking-tight">

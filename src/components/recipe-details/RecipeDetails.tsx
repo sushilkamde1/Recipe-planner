@@ -27,7 +27,7 @@ function RecipeDetails({ recipe }: { recipe: Recipe | undefined }) {
       <RecipeHero recipe={recipe} />
       <section className="mx-auto grid max-w-7xl gap-8 px-6 pb-20 lg:grid-cols-[0.8fr_1.2fr]">
         {/* Ingredients */}
-        <div className="rounded-[28px] bg-white p-7 shadow-[0_8px_30px_rgba(53,71,64,0.04)] sm:p-9">
+        <div className="rounded-[1.75rem] bg-white p-7 shadow-[0_0.5rem_1.875rem_rgba(53,71,64,0.04)] sm:p-9">
           <div className="mb-7">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
               What you&apos;ll need
@@ -45,7 +45,7 @@ function RecipeDetails({ recipe }: { recipe: Recipe | undefined }) {
         </div>
 
         {/* Instructions */}
-        <div className="rounded-[28px] bg-white p-7 shadow-[0_8px_30px_rgba(53,71,64,0.04)] sm:p-9">
+        <div className="rounded-[1.75rem] bg-white p-7 shadow-[0_0.5rem_1.875rem_rgba(53,71,64,0.04)] sm:p-9">
           <div className="mb-7">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
               Let&apos;s get cooking
@@ -62,7 +62,7 @@ function RecipeDetails({ recipe }: { recipe: Recipe | undefined }) {
 
       {/* Tags */}
       <section className="mx-auto max-w-7xl px-6 pb-20">
-        <div className="rounded-[28px] bg-secondary-200 p-8 text-white sm:p-10">
+        <div className="rounded-[1.75rem] bg-secondary-200 p-8 text-white sm:p-10">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary-200">
             Recipe tags
           </p>

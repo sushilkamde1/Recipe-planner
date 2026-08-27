@@ -25,7 +25,7 @@ function SearchInput() {
         e.preventDefault();
         handleSearch();
       }}
-      className="mt-8 flex max-w-xl items-center gap-3 rounded-2xl border border-[#e5e1d8] bg-white p-2 shadow-[0_8px_30px_rgba(53,71,64,0.06)]"
+      className="mt-8 flex max-w-xl items-center gap-3 rounded-2xl border border-[#e5e1d8] bg-white p-2 shadow-[0_0.5rem_1.875rem_rgba(53,71,64,0.06)]"
     >
       <IoSearchOutline className="ml-3 shrink-0 text-2xl text-[#8a9890]" />
 

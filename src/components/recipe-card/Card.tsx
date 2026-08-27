@@ -8,7 +8,7 @@ function Card({ recipe }: { recipe: Recipe }) {
   return (
     <article
       key={recipe.id}
-      className="group overflow-hidden rounded-[22px] border border-[#e9e6df] bg-white shadow-[0_8px_30px_rgba(53,71,64,0.04)]"
+      className="group overflow-hidden rounded-[1.375rem] border border-[#e9e6df] bg-white shadow-[0_0.5rem_1.875rem_rgba(53,71,64,0.04)]"
     >
       {/* Image */}
       <div className="relative h-52 overflow-hidden">
@@ -16,13 +16,13 @@ function Card({ recipe }: { recipe: Recipe }) {
           src={recipe.image}
           alt={recipe.name}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 40.625rem) 100vw, (max-width: 64rem) 50vw, 33vw"
           className={`object-cover transition duration-500 group-hover:scale-105`}
           loading="lazy"
         />
 
         {/* Meal Type */}
-        <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-primary">
+        <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[0.625rem] font-bold uppercase tracking-widest text-primary">
           {recipe.mealType.join(", ")}
         </span>
 
@@ -83,7 +83,7 @@ function Card({ recipe }: { recipe: Recipe }) {
           {recipe.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-[#f7f3ed] px-2.5 py-1 text-[11px] font-medium text-tertiary"
+              className="rounded-full bg-[#f7f3ed] px-2.5 py-1 text-[0.688rem] font-medium text-tertiary"
             >
               #{tag}
             </span>

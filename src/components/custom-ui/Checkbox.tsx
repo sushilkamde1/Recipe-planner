@@ -44,7 +44,7 @@ export default function Checkbox({
             : "border-yellow-50bg-white"
         }`}
       >
-        {checked && <FaCheck className="text-[10px]" />}
+        {checked && <FaCheck className="text-[0.625rem]" />}
       </span>
 
       <span

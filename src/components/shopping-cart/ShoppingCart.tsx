@@ -108,7 +108,7 @@ function ShoppingCart() {
           )}
         </div>
 
-        <section className="mt-8 overflow-hidden rounded-3xl bg-white shadow-[0_8px_30px_rgba(53,71,64,0.05)]">
+        <section className="mt-8 overflow-hidden rounded-3xl bg-white shadow-[0_0.5rem_1.875rem_rgba(53,71,64,0.05)]">
           <div className="flex items-center justify-between bg-secondary-200 px-6 py-5 text-white sm:px-8">
             <div className="flex items-center gap-3">
               <FaCartShopping className="text-primary-200" />

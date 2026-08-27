@@ -41,7 +41,7 @@ function ShoppingList() {
               : "Add recipes to your week to build a list."}
           </p>
         </div>
-        <section className="mt-8 rounded-3xl bg-white p-6 shadow-[0_8px_30px_rgba(53,71,64,0.05)] sm:p-8">
+        <section className="mt-8 rounded-3xl bg-white p-6 shadow-[0_0.5rem_1.875rem_rgba(53,71,64,0.05)] sm:p-8">
           <div className="flex items-center justify-between border-b border-primary-light pb-4">
             <h2 className="font-serif text-2xl font-bold text-secondary-200">
               Ingredients

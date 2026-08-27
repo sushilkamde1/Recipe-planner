@@ -5,7 +5,7 @@ import SearchInput from "./custom-ui/SearchInput";
 function Header() {
   return (
     <section className="mx-auto max-w-345 px-5 pb-8 pt-8 sm:px-8 lg:px-12 lg:pb-14 lg:pt-16">
-      <div className="grid items-end gap-8 lg:grid-cols-[1fr_430px]">
+      <div className="grid items-end gap-8 lg:grid-cols-[1fr_26.875rem]">
         <div className="max-w-2xl">
           <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-primary">
             Your week, made delicious
@@ -21,7 +21,7 @@ function Header() {
           </p>
           <SearchInput />
         </div>
-        <div className="relative h-64 overflow-hidden rounded-[28px] bg-[#d6e3d7] sm:h-80 lg:h-78.75">
+        <div className="relative h-64 overflow-hidden rounded-[1.75rem] bg-[#d6e3d7] sm:h-80 lg:h-78.75">
           <Image
             src={RecipeHero}
             alt="Delicious food"

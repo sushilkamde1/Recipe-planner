@@ -54,7 +54,7 @@ function Navbar() {
             >
               {item.name}
               {item.href === "/cart" && selectedIngredients.length > 0 && (
-                <span className="absolute -right-4 -top-3 grid h-5 min-w-5 place-items-center rounded-full bg-primary-200 px-1 text-[10px] font-bold text-secondary-200">
+                <span className="absolute -right-4 -top-3 grid h-5 min-w-5 place-items-center rounded-full bg-primary-200 px-1 text-[0.625rem] font-bold text-secondary-200">
                   {selectedIngredients.length}
                 </span>
               )}
@@ -89,7 +89,7 @@ function Navbar() {
                 >
                   {item.name}
                   {item.href === "/cart" && selectedIngredients.length > 0 && (
-                    <span className="grid h-5 min-w-5 place-items-center rounded-full bg-primary-200 px-1 text-[10px] font-bold text-secondary-200">
+                    <span className="grid h-5 min-w-5 place-items-center rounded-full bg-primary-200 px-1 text-[0.625rem] font-bold text-secondary-200">
                       {selectedIngredients.length}
                     </span>
                   )}

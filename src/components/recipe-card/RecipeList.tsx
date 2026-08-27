@@ -49,7 +49,7 @@ function RecipeList() {
           {Array.from({ length: 6 }, (_, index) => (
             <div
               key={index}
-              className="h-105 animate-pulse rounded-[22px] bg-[#ebe9df]"
+              className="h-105 animate-pulse rounded-[1.375rem] bg-[#ebe9df]"
             />
           ))}
         </div>
