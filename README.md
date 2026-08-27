@@ -4,9 +4,13 @@ A responsive recipe and meal-planning application built with **Next.js, TypeScri
 
 The application allows users to browse recipes, search recipes, save favorites, plan meals for the week, and automatically generate a shopping list based on their planned meals.
 
----
+## 🌐 Live Demo
+
+👉 **[View Recipe & Meal Planner](https://recipe-planner-puce.vercel.app/planner)**
 
 ## 🚀 Features
+
+---
 
 ### Recipe Browsing
 

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRecipe } from "@/store/RecipeContext";
 import { DayName, MealSlot } from "@/types/recipe.types";
 import { days, slots } from "./recipe-planner.config";
+import { toast } from "react-toastify";
 
 function RecipePlanner() {
   const {
@@ -21,6 +22,7 @@ function RecipePlanner() {
   const addMeal = () => {
     if (recipeId) {
       addToPlanner(Number(recipeId), day, slot || undefined);
+      toast.success("Recipe added!")
     }
   };
   const unassignedMeals = plannedMeals.filter((meal) => !meal.day);
