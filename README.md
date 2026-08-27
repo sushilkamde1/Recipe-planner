@@ -16,7 +16,7 @@ The application allows users to browse recipes, search recipes, save favorites, 
 
 ### 🏠 Home / Recipe Browsing
 
-![Home Page](/home.png)
+![Home Page](./public/home.png)
 
 ### Recipe Browsing
 
