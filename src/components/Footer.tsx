@@ -14,7 +14,7 @@ function Footer() {
             >
               <span className="grid h-10 w-10 place-items-center rounded-full bg-[#d6e3d7]">
                 <Image
-                  src="/Logo.png"
+                  src="/logo.svg"
                   alt="Recipe Planner logo"
                   width={20}
                   height={20}

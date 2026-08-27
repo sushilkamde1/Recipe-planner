@@ -2,15 +2,16 @@
 
 import {
   createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
   ReactNode,
+  useCallback,
+  useContext,
+  useMemo,
   useState,
-  useSyncExternalStore,
 } from "react";
 
 import recipesData from "@/data/recipe.json";
+import { usePersistentArrayState } from "@/store/usePersistentArrayState";
+
 import {
   DayName,
   MealSlot,
@@ -19,162 +20,232 @@ import {
   RecipeContextType,
 } from "@/types/recipe.types";
 
-const RecipeContext = createContext<RecipeContextType | undefined>(undefined);
+const RecipeContext = createContext<RecipeContextType | undefined>(
+  undefined,
+);
 
-function usePersistentArrayState<T>(
-  key: string,
-  fallback: T[],
-  legacyKey?: string,
-): [T[], Dispatch<SetStateAction<T[]>>] {
-  const storageEvent = `recipe-planner:${key}`;
-  const subscribe = (onStoreChange: () => void) => {
-    const handleStorageChange = (event: Event) => {
-      if (event.type === "storage" || event.type === storageEvent) {
-        onStoreChange();
-      }
-    };
+export function RecipeProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const recipes = recipesData as Recipe[];
 
-    window.addEventListener("storage", handleStorageChange);
-    window.addEventListener(storageEvent, handleStorageChange);
+  const [searchResults, setSearchResults] =
+    useState<Recipe[]>(recipes);
 
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      window.removeEventListener(storageEvent, handleStorageChange);
-    };
-  };
-  const getSnapshot = () =>
-    window.localStorage.getItem(key) ??
-    (legacyKey ? window.localStorage.getItem(legacyKey) : null);
-  const rawValue = useSyncExternalStore(subscribe, getSnapshot, () => null);
-  const parseValue = (raw: string | null) => {
-    try {
-      const parsedValue = raw ? JSON.parse(raw) : undefined;
-      return Array.isArray(parsedValue) ? parsedValue : fallback;
-    } catch {
-      return fallback;
-    }
-  };
-  const value = parseValue(rawValue);
+  const [isSearchingRecipes, setIsSearchingRecipes] =
+    useState(false);
 
-  const setValue: Dispatch<SetStateAction<T[]>> = (nextValue) => {
-    const currentValue = parseValue(getSnapshot());
-    const resolvedValue =
-      typeof nextValue === "function" ? nextValue(currentValue) : nextValue;
+  const [favorites, setFavorites] =
+    usePersistentArrayState<Recipe>("favorites", []);
 
-    window.localStorage.setItem(key, JSON.stringify(resolvedValue));
-    window.dispatchEvent(new Event(storageEvent));
-  };
+  const [plannedMeals, setPlannedMeals] =
+    usePersistentArrayState<PlannedMeal>("mealPlan", []);
 
-  return [value, setValue];
-}
-
-export function RecipeProvider({ children }: { children: ReactNode }) {
-  const [recipes] = useState<Recipe[]>(recipesData);
-  const [searchResults, setSearchResults] = useState<Recipe[]>(recipesData);
-  const [favorites, setFavorites] = usePersistentArrayState<Recipe>(
-    "favorites",
-    [],
-  );
-  const [plannedMeals, setPlannedMeals] = usePersistentArrayState<PlannedMeal>(
-    "mealPlan",
-    [],
-  );
   const [selectedIngredients, setSelectedIngredients] =
-    usePersistentArrayState<string>("selectedIngredients", [], "checkedCartItems");
-  // Search recipes
-  const searchRecipes = (query: string) => {
+    usePersistentArrayState<string>(
+      "selectedIngredients",
+      [],
+      "checkedCartItems",
+    );
 
-    const trimmedQuery = query.trim().toLowerCase();
+  /*
+   * Search
+   */
+  const searchRecipes = useCallback(
+    (query: string) => {
+      setIsSearchingRecipes(true);
 
-    if (!trimmedQuery) {
-      setSearchResults(recipes);
-      return;
-    }
-    const results = recipes.filter((recipe) => {
-      return (
-        recipe.name.toLowerCase().includes(trimmedQuery) ||
-        recipe.cuisine.toLowerCase().includes(trimmedQuery) ||
-        recipe.difficulty.toLowerCase().includes(trimmedQuery) ||
-        recipe.tags.some((tag) => tag.toLowerCase().includes(trimmedQuery)) ||
-        recipe.mealType.some((meal) =>
-          meal.toLowerCase().includes(trimmedQuery),
-        ) ||
-        recipe.ingredients.some((ingredient) =>
-          ingredient.toLowerCase().includes(trimmedQuery),
-        )
+      const trimmedQuery = query.trim().toLowerCase();
+
+      window.setTimeout(() => {
+        if (!trimmedQuery) {
+          setSearchResults(recipes);
+          setIsSearchingRecipes(false);
+          return;
+        }
+
+        const results = recipes.filter((recipe) => {
+          const searchableText = [
+            recipe.name,
+            recipe.cuisine,
+            recipe.difficulty,
+            ...recipe.tags,
+            ...recipe.mealType,
+            ...recipe.ingredients,
+          ]
+            .join(" ")
+            .toLowerCase();
+
+          return searchableText.includes(trimmedQuery);
+        });
+
+        setSearchResults(results);
+        setIsSearchingRecipes(false);
+      }, 250);
+    },
+    [recipes],
+  );
+
+  /*
+   * Favorites
+   */
+  const addFavorite = useCallback(
+    (recipe: Recipe) => {
+      setFavorites((previous) => {
+        if (
+          previous.some(
+            (item) => item.id === recipe.id,
+          )
+        ) {
+          return previous;
+        }
+
+        return [...previous, recipe];
+      });
+    },
+    [setFavorites],
+  );
+
+  const removeFavorite = useCallback(
+    (id: number) => {
+      setFavorites((previous) =>
+        previous.filter(
+          (recipe) => recipe.id !== id,
+        ),
       );
-    });
+    },
+    [setFavorites],
+  );
 
-    setSearchResults(results);
-  };
-  const addFavorite = (recipe: Recipe) => {
-    setFavorites((prev) => {
-      // Don't add duplicate
-      if (prev.some((item) => item.id === recipe.id)) {
-        return prev;
-      }
+  const isFavorite = useCallback(
+    (id: number) => {
+      return favorites.some(
+        (recipe) => recipe.id === id,
+      );
+    },
+    [favorites],
+  );
 
-      return [...prev, recipe];
-    });
-  };
+  /*
+   * Planner
+   */
+  const addToPlanner = useCallback(
+    (
+      recipeId: number,
+      day?: DayName,
+      slot?: MealSlot,
+    ) => {
+      setPlannedMeals((previous) => [
+        ...previous,
+        {
+          id: `${Date.now()}-${recipeId}`,
+          recipeId,
+          day,
+          slot,
+        },
+      ]);
+    },
+    [setPlannedMeals],
+  );
 
-  const removeFavorite = (id: number) => {
-    setFavorites((prev) => prev.filter((recipe) => recipe.id !== id));
-  };
+  const updatePlannedMeal = useCallback(
+    (
+      id: string,
+      day: DayName,
+      slot?: MealSlot,
+    ) => {
+      setPlannedMeals((previous) =>
+        previous.map((meal) =>
+          meal.id === id
+            ? { ...meal, day, slot }
+            : meal,
+        ),
+      );
+    },
+    [setPlannedMeals],
+  );
 
-  const isFavorite = (id: number) => {
-    return favorites.some((recipe) => recipe.id === id);
-  };
+  const removeFromPlanner = useCallback(
+    (id: string) => {
+      setPlannedMeals((previous) =>
+        previous.filter(
+          (meal) => meal.id !== id,
+        ),
+      );
+    },
+    [setPlannedMeals],
+  );
 
-  const addToPlanner = (recipeId: number, day?: DayName, slot?: MealSlot) => {
-    setPlannedMeals((previous) => [
-      ...previous,
-      { id: `${Date.now()}-${recipeId}`, recipeId, day, slot },
-    ]);
-  };
+  /*
+   * Shopping List
+   */
+  const toggleIngredient = useCallback(
+    (label: string) => {
+      const key = label.trim().toLowerCase();
 
-  const updatePlannedMeal = (id: string, day: DayName, slot?: MealSlot) => {
-    setPlannedMeals((previous) =>
-      previous.map((meal) =>
-        meal.id === id ? { ...meal, day, slot } : meal,
-      ),
-    );
-  };
+      setSelectedIngredients((previous) =>
+        previous.includes(key)
+          ? previous.filter(
+              (ingredient) =>
+                ingredient !== key,
+            )
+          : [...previous, key],
+      );
+    },
+    [setSelectedIngredients],
+  );
 
-  const removeFromPlanner = (id: string) => {
-    setPlannedMeals((previous) => previous.filter((meal) => meal.id !== id));
-  };
+  const clearSelectedIngredients = useCallback(() => {
+    setSelectedIngredients([]);
+  }, [setSelectedIngredients]);
 
-  const toggleIngredient = (label: string) => {
-    const key = label.trim().toLowerCase();
-    setSelectedIngredients((previous) =>
-      previous.includes(key)
-        ? previous.filter((ingredient) => ingredient !== key)
-        : [...previous, key],
-    );
-  };
+  /*
+   * Context value
+   */
+  const contextValue = useMemo(
+    () => ({
+      recipes,
+      favorites,
+      searchResults,
+      searchRecipes,
+      isSearchingRecipes,
 
-  const clearSelectedIngredients = () => setSelectedIngredients([]);
+      addFavorite,
+      removeFavorite,
+      isFavorite,
+
+      plannedMeals,
+      addToPlanner,
+      updatePlannedMeal,
+      removeFromPlanner,
+
+      selectedIngredients,
+      toggleIngredient,
+      clearSelectedIngredients,
+    }),
+    [
+      recipes,
+      favorites,
+      searchResults,
+      searchRecipes,
+      isSearchingRecipes,
+      addFavorite,
+      removeFavorite,
+      isFavorite,
+      plannedMeals,
+      addToPlanner,
+      updatePlannedMeal,
+      removeFromPlanner,
+      selectedIngredients,
+      toggleIngredient,
+      clearSelectedIngredients,
+    ],
+  );
 
   return (
-    <RecipeContext.Provider
-      value={{
-        recipes,
-        favorites,
-        searchResults,
-        searchRecipes,
-        addFavorite,
-        removeFavorite,
-        isFavorite,
-        plannedMeals,
-        addToPlanner,
-        updatePlannedMeal,
-        removeFromPlanner,
-        selectedIngredients,
-        toggleIngredient,
-        clearSelectedIngredients,
-      }}
-    >
+    <RecipeContext.Provider value={contextValue}>
       {children}
     </RecipeContext.Provider>
   );
@@ -184,7 +255,9 @@ export function useRecipe() {
   const context = useContext(RecipeContext);
 
   if (!context) {
-    throw new Error("useRecipe must be used inside RecipeProvider");
+    throw new Error(
+      "useRecipe must be used inside RecipeProvider",
+    );
   }
 
   return context;

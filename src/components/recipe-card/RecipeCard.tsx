@@ -7,7 +7,7 @@ import { useRecipe } from "@/store/RecipeContext";
 
 function RecipeCard() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const { recipes, searchResults } = useRecipe();
+  const { recipes, searchResults, isSearchingRecipes } = useRecipe();
   const categories = ["All", "Easy", "Medium", "Hard"];
   const categoryRecipes =
     activeCategory === "All"
@@ -44,7 +44,16 @@ function RecipeCard() {
           ))}
         </div>
       </div>
-      {recipes.length === 0 ? (
+      {isSearchingRecipes ? (
+        <div className="mt-8 grid gap-5 md:grid-cols-3" aria-busy="true" aria-label="Loading recipes">
+          {Array.from({ length: 6 }, (_, index) => (
+            <div
+              key={index}
+              className="h-105 animate-pulse rounded-[22px] bg-[#ebe9df]"
+            />
+          ))}
+        </div>
+      ) : recipes.length === 0 ? (
         <p className="text-center text-lg text-tertiary">No recipes found.</p>
       ) : (
         <Card

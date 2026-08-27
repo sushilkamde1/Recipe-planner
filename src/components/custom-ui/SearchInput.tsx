@@ -6,7 +6,7 @@ import { useRecipe } from "@/store/RecipeContext";
 
 function SearchInput() {
   const [query, setQuery] = useState("");
-  const { searchRecipes } = useRecipe();
+  const { searchRecipes, isSearchingRecipes } = useRecipe();
 
   const handleSearch = () => {
     searchRecipes(query);
@@ -39,9 +39,10 @@ function SearchInput() {
 
       <button
         type="submit"
+        disabled={isSearchingRecipes}
         className="shrink-0 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-hover"
       >
-        Search
+        {isSearchingRecipes ? "Searching..." : "Search"}
       </button>
     </form>
   );

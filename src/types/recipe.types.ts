@@ -43,6 +43,7 @@ export type RecipeContextType = {
   isFavorite: (id: number) => boolean;
   searchResults: Recipe[];
   searchRecipes: (query: string) => void;
+  isSearchingRecipes: boolean;
   plannedMeals: PlannedMeal[];
   addToPlanner: (recipeId: number, day?: DayName, slot?: MealSlot) => void;
   updatePlannedMeal: (id: string, day: DayName, slot?: MealSlot) => void;

@@ -1,6 +1,8 @@
 import { Recipe } from "@/types/recipe.types";
 import { FaStar } from "react-icons/fa6";
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 import FavoriteButton from "../custom-ui/FavoriteButton";
 
 function Card({
@@ -10,6 +12,8 @@ function Card({
   filteredRecipes: Recipe[];
   activeCategory: string;
 }) {
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+
   return (
     <div className="mt-8 grid gap-5 md:grid-cols-3">
       {filteredRecipes.map((recipe: Recipe) => (
@@ -19,9 +23,26 @@ function Card({
         >
           {/* Image */}
           <div className="relative h-52 overflow-hidden">
-            <div
-              className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105"
-              style={{ backgroundImage: `url(${recipe.image})` }}
+            {!loadedImages.has(recipe.id) && (
+              <div
+                className="absolute inset-0 animate-pulse bg-[#ebe9df]"
+                aria-label="Loading recipe image"
+              />
+            )}
+            <Image
+              src={recipe.image}
+              alt={recipe.name}
+              fill
+              onLoad={() =>
+                setLoadedImages((previous) => {
+                  const next = new Set(previous);
+                  next.add(recipe.id);
+                  return next;
+                })
+              }
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className={`object-cover transition duration-500 group-hover:scale-105 ${loadedImages.has(recipe.id) ? "opacity-100" : "opacity-0"}`}
+              loading="lazy"
             />
 
             {/* Meal Type */}
