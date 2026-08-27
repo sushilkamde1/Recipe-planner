@@ -8,8 +8,6 @@ The application allows users to browse recipes, search recipes, save favorites, 
 
 👉 **[View Recipe & Meal Planner](https://recipe-planner-puce.vercel.app )**
 
-## 🚀 Features
-
 ---
 
 ## 📸 Screenshots
@@ -18,7 +16,7 @@ The application allows users to browse recipes, search recipes, save favorites, 
 
 ![Home Page](./public/home.png)
 
-### Recipe Browsing
+## 🚀 Features
 
 - Browse recipes from local mock JSON data
 - Recipe cards with:
