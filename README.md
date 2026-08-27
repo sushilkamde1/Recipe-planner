@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍴 Recipe & Meal Planner
 
-## Getting Started
+A responsive recipe and meal-planning application built with **Next.js, TypeScript, Tailwind CSS, and React Context API**.
 
-First, run the development server:
+The application allows users to browse recipes, search recipes, save favorites, plan meals for the week, and automatically generate a shopping list based on their planned meals.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Recipe Browsing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Browse recipes from local mock JSON data
+- Recipe cards with:
+  - Recipe name
+  - Image
+  - Cuisine
+  - Difficulty
+  - Cook time
+  - Rating
+  - Meal type
+- Responsive recipe grid
+- Recipe detail pages
+- Dynamic recipe routing using `/recipes/[id]`
 
-## Learn More
+### 🔎 Search
 
-To learn more about Next.js, take a look at the following resources:
+Users can search recipes by:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Recipe name
+- Ingredients
+- Cuisine
+- Difficulty
+- Tags
+- Meal type
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Search works from the home/recipe listing page and supports pressing **Enter** or clicking the search button.
 
-## Deploy on Vercel
+### ❤️ Favorites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Users can:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Add recipes to favorites
+- Remove recipes from favorites
+- View all favorite recipes
+- Favorite recipes from recipe cards and recipe detail pages
+
+Favorites are persisted using `localStorage`, so they remain available after refreshing the browser.
+
+### 📅 Weekly Meal Planner
+
+Users can plan recipes across a weekly calendar:
+
+- Monday – Sunday
+- Add recipes to a specific day
+- Remove planned recipes
+- View the planned recipes for each day
+- Planned meals are managed using React Context
+
+### 🛒 Shopping List
+
+The shopping list is generated automatically from planned meals.
+
+Features include:
+
+- Automatically collects ingredients from planned recipes
+- De-duplicates ingredients
+- Displays how many planned recipes use an ingredient
+- Check off ingredients
+- Pagination for large ingredient lists
+- Empty state when no meals are planned
+
+The shopping list is **derived from planner state** rather than being stored separately.
+
+### 📱 Responsive UI
+
+The application is designed to work across:
+
+- Desktop
+- Tablet
+- Mobile
+
+---
+
+# 🛠️ Tech Stack
+
+- **Next.js 13+**
+- **Next.js App Router**
+- **TypeScript**
+- **React**
+- **Tailwind CSS**
+- **React Context API**
+- **localStorage**
+- **JSON mock data**
+- **Next.js Image component**
+- **React Icons**
+
+No external state management library is used.
