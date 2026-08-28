@@ -1,49 +1,20 @@
 "use client";
 
+import { SyntheticEvent, useState } from "react";
 import { useRecipe } from "@/store/RecipeContext";
+import { toast } from "react-toastify";
 import { FaCartShopping } from "react-icons/fa6";
 import Checkbox from "../custom-ui/Checkbox";
 import { useRouter } from "next/navigation";
 import BackButton from "../custom-ui/BackButton";
-
-const formatCurrency = (amount: number) => `$${amount.toFixed(2)}`;
-
-const estimateIngredientPrice = (ingredient: string) => {
-  const name = ingredient.toLowerCase();
-
-  if (
-    name.includes("meat") ||
-    name.includes("chicken") ||
-    name.includes("beef")
-  ) {
-    return 8.5;
-  }
-  if (name.includes("cheese") || name.includes("mozzarella")) {
-    return 5.5;
-  }
-  if (name.includes("oil") || name.includes("sauce")) {
-    return 4.25;
-  }
-  if (
-    name.includes("rice") ||
-    name.includes("pasta") ||
-    name.includes("dough")
-  ) {
-    return 3.75;
-  }
-  if (
-    name.includes("vegetable") ||
-    name.includes("broccoli") ||
-    name.includes("carrot")
-  ) {
-    return 2.75;
-  }
-
-  return 2.5;
-};
+import CheckoutModal from "./CheckoutModal";
+import { PaymentMethod } from "@/types/recipe.types";
+import { estimateIngredientPrice, formatCurrency } from "@/utils/recipeUtils";
 
 function ShoppingCart() {
   const router = useRouter();
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
   const {
     recipes,
     plannedMeals,
@@ -79,6 +50,13 @@ function ShoppingCart() {
   const discount = cartValue * 0.1;
   const totalValue = cartValue - discount;
 
+  const handleCheckout = (event: SyntheticEvent) => {
+    event.preventDefault();
+    setIsCheckoutOpen(false);
+    clearSelectedIngredients();
+    toast.success("Order placed! Your ingredients are on their way.");
+  };
+
   return (
     <main className="min-h-screen bg-yellow-300 px-5 py-10 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-7xl">
@@ -111,7 +89,7 @@ function ShoppingCart() {
         <section className="mt-8 overflow-hidden rounded-3xl bg-white shadow-[0_0.5rem_1.875rem_rgba(53,71,64,0.05)]">
           <div className="flex items-center justify-between bg-secondary-200 px-6 py-5 text-white sm:px-8">
             <div className="flex items-center gap-3">
-              <FaCartShopping className="text-primary-200" />
+              <FaCartShopping className="text-primary-200 text-2xl" />
               <h2 className="font-serif text-2xl font-bold">
                 This week&apos;s cart
               </h2>
@@ -184,10 +162,27 @@ function ShoppingCart() {
               <p className="mt-4 text-right text-xs text-tertiary">
                 Prices are estimates and may vary by store.
               </p>
+              <button
+                type="button"
+                onClick={() => setIsCheckoutOpen(true)}
+                className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 font-bold text-white transition hover:bg-primary-hover"
+              >
+                Proceed to checkout
+              </button>
             </div>
           )}
         </section>
       </div>
+
+      {isCheckoutOpen && (
+        <CheckoutModal
+          totalValue={totalValue}
+          handleCheckout={handleCheckout}
+          paymentMethod={paymentMethod}
+          setIsCheckoutOpen={setIsCheckoutOpen}
+          setPaymentMethod={setPaymentMethod}
+        />
+      )}
     </main>
   );
 }

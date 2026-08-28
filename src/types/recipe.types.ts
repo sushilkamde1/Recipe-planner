@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction, SyntheticEvent } from "react";
+
 export interface Recipe {
   id: number;
   name: string;
@@ -56,4 +58,12 @@ export type PaginationProps<T> = {
   items: T[];
   itemsPerPage?: number;
   renderItem: (item: T, index: number) => React.ReactNode;
+};
+export type PaymentMethod = "card" | "paytm" | "cash";
+export type Props = {
+  totalValue: number;
+  setIsCheckoutOpen: Dispatch<SetStateAction<boolean>>;
+  handleCheckout: (event: SyntheticEvent ) => void;
+  paymentMethod: string;
+  setPaymentMethod: Dispatch<SetStateAction<PaymentMethod>>;
 };

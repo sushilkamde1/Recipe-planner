@@ -1,10 +1,11 @@
 "use client";
 import BackButton from "@/components/custom-ui/BackButton";
+import Link from "next/link";
 import { useRecipe } from "@/store/RecipeContext";
 import { IngredientsList } from "./IngredientsList";
 
 function ShoppingList() {
-  const { recipes, plannedMeals } = useRecipe();
+  const { recipes, plannedMeals, selectedIngredients } = useRecipe();
   const ingredientCounts = new Map<string, { label: string; count: number }>();
 
   plannedMeals.forEach((meal) => {
@@ -51,6 +52,14 @@ function ShoppingList() {
             </span>
           </div>
           <IngredientsList ingredients={ingredients} />
+          {selectedIngredients.length > 0 && (
+            <Link
+              href="/cart"
+              className="mt-6 flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-hover"
+            >
+              View cart ({selectedIngredients.length})
+            </Link>
+          )}
         </section>
       </div>
     </main>
