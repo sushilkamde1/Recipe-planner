@@ -143,7 +143,7 @@ function RecipeHero({ recipe }: { recipe: Recipe }) {
 
             <button
               type="button"
-              className={`rounded-full border border-yellow-100 bg-white px-4 py-2.5 text-xs font-bold text-secondary-200 transition hover:text-primary hover:border-primary ${isFavorite(recipe.id) ? "bg-primary text-primary border border-primary!" : ""}`}
+              className={`rounded-full border border-yellow-100 bg-white px-4 py-2.5 text-xs font-bold text-secondary-200 transition hover:text-primary hover:border-primary ${isFavorite(recipe.id) ? "bg-primary text-primary! border border-primary!" : ""}`}
               onClick={handleFavoriteClick}
             >
               {isFavorite(recipe.id) ? "Saved" : "Save"}
