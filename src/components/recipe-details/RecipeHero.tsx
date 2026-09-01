@@ -1,37 +1,12 @@
-import { useRecipe } from "@/store/RecipeContext";
-import { Recipe } from "@/types/recipe.types";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { GoDotFill } from "react-icons/go";
-import { toast } from "react-toastify";
+import { Recipe } from "@/types/recipe.types";
+import RecipeHeroActions from "./RecipeHeroActions";
 
 function RecipeHero({ recipe }: { recipe: Recipe }) {
   const totalTime = recipe.prepTimeMinutes + recipe.cookTimeMinutes;
-  const router = useRouter();
-  const [isAddedToPlanner, setIsAddedToPlanner] = useState(false);
-  const { favorites, isFavorite, removeFavorite, addFavorite, addToPlanner } =
-    useRecipe();
-  const handleFavoriteClick = () => {
-    if (favorites.some((fav) => fav.id === recipe.id)) {
-      removeFavorite(recipe.id);
-      toast.info(`${recipe.name} removed from favorites.`);
-    } else {
-      addFavorite(recipe);
-      toast.success(`${recipe.name} added to favorites.`);
-    }
-  };
-  const handlePlannerClick = () => {
-    if (isAddedToPlanner) {
-      router.push("/planner");
-      return;
-    }
 
-    addToPlanner(recipe.id);
-    setIsAddedToPlanner(true);
-    toast.success(`${recipe.name} added to your planner list.`);
-  };
   return (
     <section className="mx-auto max-w-7xl px-6 py-7">
       <div className="grid overflow-hidden rounded-3xl bg-white shadow-[0_0.625rem_1.875rem_rgba(53,71,64,0.06)] md:grid-cols-[0.85fr_1.15fr]">
@@ -131,24 +106,8 @@ function RecipeHero({ recipe }: { recipe: Recipe }) {
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="mt-5 flex gap-2">
-            <button
-              type="button"
-              onClick={handlePlannerClick}
-              className="rounded-full bg-secondary-200 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-green-100"
-            >
-              {isAddedToPlanner ? "Go to planner" : "Add to planner"}
-            </button>
-
-            <button
-              type="button"
-              className={`rounded-full border border-yellow-100 bg-white px-4 py-2.5 text-xs font-bold text-secondary-200 transition hover:text-primary hover:border-primary ${isFavorite(recipe.id) ? "bg-primary text-primary! border border-primary!" : ""}`}
-              onClick={handleFavoriteClick}
-            >
-              {isFavorite(recipe.id) ? "Saved" : "Save"}
-            </button>
-          </div>
+          {/* Client-side actions */}
+          <RecipeHeroActions recipe={recipe} />
         </div>
       </div>
     </section>

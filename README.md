@@ -1,24 +1,24 @@
-# 🍴 Recipe & Meal Planner
+# Recipe & Meal Planner
 
 A responsive recipe and meal-planning application built with **Next.js, TypeScript, Tailwind CSS, and React Context API**.
 
 The application allows users to browse recipes, search recipes, save favorites, plan meals for the week, and automatically generate a shopping list based on their planned meals.
 
-## 🌐 Live Demo
+## Live Demo
 
 👉 **[View Recipe & Meal Planner](https://recipe-planner-puce.vercel.app )**
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
-### 🏠 Home / Recipe Browsing
+### Home / Recipe Browsing
 
 ![Home Page](./public/home.png)
 
 ---
 
-## 🚀 Features
+## Features
 
 - Browse recipes from local mock JSON data
 - Recipe cards with:
@@ -33,7 +33,7 @@ The application allows users to browse recipes, search recipes, save favorites, 
 - Recipe detail pages
 - Dynamic recipe routing using `/recipes/[id]`
 
-### 🔎 Search
+### Search
 
 Users can search recipes by:
 
@@ -46,7 +46,7 @@ Users can search recipes by:
 
 Search works from the home/recipe listing page and supports pressing **Enter** or clicking the search button.
 
-### ❤️ Favorites
+### Favorites
 
 Users can:
 
@@ -58,7 +58,7 @@ Users can:
 
 Favorites are persisted using `localStorage`, so they remain available after refreshing the browser.
 
-### 📅 Weekly Meal Planner
+### Weekly Meal Planner
 
 Users can plan recipes across a weekly calendar:
 
@@ -68,7 +68,7 @@ Users can plan recipes across a weekly calendar:
 - View the planned recipes for each day
 - Planned meals are managed using React Context
 
-### 🛒 Shopping List
+### Shopping List
 
 The shopping list is generated automatically from planned meals.
 
@@ -84,7 +84,7 @@ Features include:
 
 The shopping list is **derived from planner state** rather than being stored separately.
 
-### 📱 Responsive UI
+### Responsive UI
 
 The application is designed to work across:
 
@@ -92,7 +92,7 @@ The application is designed to work across:
 - Tablet
 - Mobile
 
-# 🛠️ Tech Stack
+# Tech Stack
 
 - **Next.js 16+**
 - **Next.js App Router**
@@ -106,4 +106,26 @@ The application is designed to work across:
 - **React Icons**
 - **react-virtuoso**
 
-No external state management library is used.
+# Getting Started
+
+Follow the steps below to run this project locally.
+
+## Prerequisites
+
+Make sure the following are installed on your machine:
+
+- Node.js 18.18 or later
+- npm, yarn, pnpm, or bun
+- Git
+
+Clone the GitHub Repository:
+
+```bash
+git clone https://github.com/sushilkamde1/Recipe-planner
+
+cd recipe-planner
+npm install
+npm run dev
+▲ Next.js
+- Local: http://localhost:3000
+

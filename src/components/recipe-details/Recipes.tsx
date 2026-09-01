@@ -1,10 +1,8 @@
-"use client";
-import { useRecipe } from "@/store/RecipeContext";
+import recipes from "@/data/recipe.json";
 import RecipeDetails from "./RecipeDetails";
 import { Recipe } from "@/types/recipe.types";
 
 function Recipes({ recipeId }: { recipeId: string }) {
-  const { recipes } = useRecipe();
   const recipe = (recipes as Recipe[]).find(
     (recipe) => recipe.id === Number(recipeId),
   );
