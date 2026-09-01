@@ -16,8 +16,6 @@ The application allows users to browse recipes, search recipes, save favorites, 
 
 ![Home Page](./public/home.png)
 
----
-
 ## Features
 
 - Browse recipes from local mock JSON data
