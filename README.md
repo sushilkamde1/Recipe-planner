@@ -6,7 +6,7 @@ The application allows users to browse recipes, search recipes, save favorites, 
 
 ## Live Demo
 
-👉 **[View Recipe & Meal Planner](https://recipe-planner-puce.vercel.app )**
+👉 **[View Recipe & Meal Planner](https://recipe-planner-puce.vercel.app)**
 
 ---
 
@@ -122,10 +122,23 @@ Clone the GitHub Repository:
 
 ```bash
 git clone https://github.com/sushilkamde1/Recipe-planner
+```
 
-cd recipe-planner
+Install all project dependencies:
+
+```bash
 npm install
-npm run dev
-▲ Next.js
-- Local: http://localhost:3000
+```
 
+Run:
+
+```bash
+npm run dev
+```
+
+▲ Next.js
+Open your browser:
+
+```bash
+- Local: http://localhost:3000
+```
