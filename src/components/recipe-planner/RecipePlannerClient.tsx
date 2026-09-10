@@ -7,7 +7,7 @@ import { DayName, MealSlot } from "@/types/recipe.types";
 import { days, slots } from "./recipePlanner.config";
 import { toast } from "react-toastify";
 
-function RecipePlannerClient () {
+function RecipePlannerClient() {
      const {
     recipes,
     plannedMeals,
@@ -228,4 +228,4 @@ function RecipePlannerClient () {
   )
 }
 
-export default RecipePlannerClient 
+export default RecipePlannerClient;

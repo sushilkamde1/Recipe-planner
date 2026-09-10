@@ -10,6 +10,7 @@ import BackButton from "../custom-ui/BackButton";
 import CheckoutModal from "./CheckoutModal";
 import { PaymentMethod, Recipe } from "@/types/recipe.types";
 import { estimateIngredientPrice, formatCurrency } from "@/utils/recipeUtils";
+import { getIngredientSummary } from "@/utils/ingredientUtils";
 
 function ShoppingCartClient({ recipes }: { recipes: Recipe[] }) {
   const router = useRouter();
@@ -22,25 +23,10 @@ function ShoppingCartClient({ recipes }: { recipes: Recipe[] }) {
     clearSelectedIngredients,
   } = useRecipe();
 
-  const ingredientCounts = new Map<string, { label: string; count: number }>();
-  plannedMeals.forEach((meal) => {
-    const recipe = recipes.find((item) => item.id === meal.recipeId);
-    recipe?.ingredients.forEach((ingredient) => {
-      const label = ingredient.trim();
-      const key = label.toLowerCase();
-      const current = ingredientCounts.get(key);
-      ingredientCounts.set(key, {
-        label: current?.label ?? label,
-        count: (current?.count ?? 0) + 1,
-      });
-    });
-  });
-
-  const ingredients = Array.from(ingredientCounts.values())
+  const ingredients = getIngredientSummary(recipes, plannedMeals)
     .filter((ingredient) =>
       selectedIngredients.includes(ingredient.label.toLowerCase()),
     )
-    .sort((a, b) => a.label.localeCompare(b.label));
   const cartValue = ingredients.reduce(
     (total, ingredient) =>
       total + estimateIngredientPrice(ingredient.label) * ingredient.count,

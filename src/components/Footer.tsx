@@ -52,49 +52,33 @@ function Footer() {
 
           <div>
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#e8a47e]">
-              About
+              Keep cooking
             </h2>
-            <nav
-              className="mt-4 flex flex-col gap-3 text-sm text-[#d4ddd6]"
-              aria-label="About navigation"
+            <p className="mt-4 max-w-xs text-sm leading-6 text-[#b9c7be]">
+              Save a few recipes, put them on the planner, and let the shopping
+              list handle the rest.
+            </p>
+            <Link
+              className="mt-4 inline-block text-sm font-bold text-white transition hover:text-[#e8a47e]"
+              href="/planner"
             >
-              <a className="transition hover:text-white" href="#top">
-                Contact us
-              </a>
-              <a className="transition hover:text-white" href="#top">
-                Our story
-              </a>
-              <a className="transition hover:text-white" href="#top">
-                Privacy
-              </a>
-            </nav>
+              Open the planner
+            </Link>
           </div>
 
           <div>
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#e8a47e]">
-              A little inspiration
+              This week&apos;s plan
             </h2>
             <p className="mt-4 text-sm leading-6 text-[#b9c7be]">
-              Get a fresh recipe idea in your inbox each week.
+              Start with a recipe and build a week that works for you.
             </p>
-            <form className="mt-4 flex rounded-xl bg-white p-1.5">
-              <label className="sr-only" htmlFor="footer-email">
-                Email address
-              </label>
-              <input
-                id="footer-email"
-                type="email"
-                required
-                placeholder="Your email address"
-                className="min-w-0 flex-1 bg-transparent px-3 text-sm text-[#20332f] outline-none placeholder:text-[#8a9890]"
-              />
-              <button
-                type="submit"
-                className="rounded-lg bg-primary px-3 py-2 text-xs font-bold text-white transition hover:bg-primary-hover"
-              >
-                Join
-              </button>
-            </form>
+            <Link
+              className="mt-4 inline-block rounded-lg bg-primary px-3 py-2 text-xs font-bold text-white transition hover:bg-primary-hover"
+              href="/"
+            >
+              Browse recipes
+            </Link>
           </div>
         </div>
 

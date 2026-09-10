@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import recipes from "@/data/recipe.json";
 import Recipes from "@/components/recipe-details/Recipes";
-import { Recipe } from "@/types/recipe.types";
+import type { Recipe } from "@/types/recipe.types";
 
 type Props = {
   params: Promise<{ recipeId: string }>;
@@ -9,9 +9,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { recipeId } = await params;
-  const recipe = (recipes as Recipe[]).find(
-    (item) => item.id === Number(recipeId),
-  );
+  const recipe = (recipes as Recipe[]).find((item) => item.id === Number(recipeId));
 
   if (!recipe) {
     return {
@@ -22,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${recipe.name} | Recipe Planner`,
-    description: `View the ingredients and instructions for ${recipe.name}.`,
+    description: `Ingredients and instructions for ${recipe.name}.`,
   };
 }
 

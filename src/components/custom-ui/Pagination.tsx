@@ -2,7 +2,7 @@
 
 import { PaginationProps } from "@/types/recipe.types";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Pagination<T>({
   items,
@@ -12,6 +12,10 @@ export default function Pagination<T>({
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(items.length / itemsPerPage);
+
+  useEffect(() => {
+    setCurrentPage((page) => Math.min(page, Math.max(totalPages, 1)));
+  }, [totalPages]);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
 
@@ -27,13 +31,10 @@ export default function Pagination<T>({
 
   return (
     <div>
-      {/* List */}
       <div>{currentItems.map((item, index) => renderItem(item, index))}</div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="mt-5 flex items-center justify-between border-t border-primary-light pt-4">
-          {/* Previous */}
           <button
             type="button"
             disabled={currentPage === 1}
@@ -43,7 +44,6 @@ export default function Pagination<T>({
             <FaArrowLeftLong /> Previous
           </button>
 
-          {/* Page numbers */}
           <div className="flex items-center gap-1">
             {Array.from({ length: totalPages }, (_, index) => index + 1).map(
               (page) => (
@@ -63,7 +63,6 @@ export default function Pagination<T>({
             )}
           </div>
 
-          {/* Next */}
           <button
             type="button"
             disabled={currentPage === totalPages}

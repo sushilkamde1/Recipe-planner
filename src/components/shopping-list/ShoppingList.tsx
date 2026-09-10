@@ -3,28 +3,11 @@ import BackButton from "@/components/custom-ui/BackButton";
 import Link from "next/link";
 import { useRecipe } from "@/store/RecipeContext";
 import { IngredientsList } from "./IngredientsList";
+import { getIngredientSummary } from "@/utils/ingredientUtils";
 
 function ShoppingList() {
   const { recipes, plannedMeals, selectedIngredients } = useRecipe();
-  const ingredientCounts = new Map<string, { label: string; count: number }>();
-
-  plannedMeals.forEach((meal) => {
-    const recipe = recipes.find((item) => item.id === meal.recipeId);
-    recipe?.ingredients.forEach((ingredient) => {
-      const label = ingredient.trim();
-      const key = label.toLowerCase();
-      const current = ingredientCounts.get(key);
-
-      ingredientCounts.set(key, {
-        label: current?.label ?? label,
-        count: (current?.count ?? 0) + 1,
-      });
-    });
-  });
-
-  const ingredients = Array.from(ingredientCounts.values()).sort((a, b) =>
-    a.label.localeCompare(b.label),
-  );
+  const ingredients = getIngredientSummary(recipes, plannedMeals);
   return (
     <main className="min-h-screen px-5 py-10 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-7xl">

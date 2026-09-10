@@ -106,14 +106,13 @@ The application is designed to work across:
 
 ## Server and Client Components
 
-The recipe detail route and its data lookup remain Server Components, which lets
-Next.js render the recipe page and its page-specific metadata on the server.
-Interactive components use the `'use client'` directive: `FavoriteButton` needs
-the `useRecipe` context hook and an `onClick` handler, while the planner,
-shopping list, search, and context provider need client-side state or browser
-storage. `Card` does not need its own directive because it is only rendered
-inside an already-client recipe list subtree; client boundaries apply to the
-components imported beneath them.
+The recipe detail page is a Server Component. It reads the local recipe data on
+the server and uses `generateMetadata` to set the title for each recipe.
+
+Components that use hooks, event handlers, context, or browser storage are
+Client Components. That includes `FavoriteButton`, the planner, the shopping
+list, search, and `RecipeProvider`. `Card` is used inside the client recipe
+list, so it does not need its own `'use client'` directive.
 
 # Getting Started
 

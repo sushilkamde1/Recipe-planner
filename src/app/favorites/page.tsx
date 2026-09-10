@@ -1,7 +1,7 @@
-import FevoritesRecipes from "@/components/fevorites-recipe/FevoritesRecipes";
+import FavoritesRecipes from "@/components/favorites-recipe/FavoritesRecipes";
 
 function FavoritesPage() {
-  return <FevoritesRecipes />;
+  return <FavoritesRecipes />;
 }
 
 export default FavoritesPage;

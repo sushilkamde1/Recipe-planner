@@ -5,8 +5,9 @@ import Card from "@/components/recipe-card/RecipeCards";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { useRecipe } from "@/store/RecipeContext";
 
-function FevoritesRecipesClient() {
+function FavoritesRecipesClient() {
   const { favorites } = useRecipe();
+
   return (
     <main className="min-h-screen bg-[#f7f5f0] text-[#20332f]">
       <section className="mx-auto max-w-345 px-5 pb-12 pt-10 sm:px-8 lg:px-12 lg:pb-16 lg:pt-16">
@@ -61,4 +62,4 @@ function FevoritesRecipesClient() {
   );
 }
 
-export default FevoritesRecipesClient;
+export default FavoritesRecipesClient;

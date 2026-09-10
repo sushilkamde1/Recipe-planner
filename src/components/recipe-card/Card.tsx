@@ -10,7 +10,6 @@ function Card({ recipe }: { recipe: Recipe }) {
       key={recipe.id}
       className="group overflow-hidden rounded-[1.375rem] border border-[#e9e6df] bg-white shadow-[0_0.5rem_1.875rem_rgba(53,71,64,0.04)]"
     >
-      {/* Image */}
       <div className="relative h-52 overflow-hidden">
         <Image
           src={recipe.image}
@@ -21,30 +20,24 @@ function Card({ recipe }: { recipe: Recipe }) {
           loading="lazy"
         />
 
-        {/* Meal Type */}
         <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[0.625rem] font-bold uppercase tracking-widest text-primary">
           {recipe.mealType.join(", ")}
         </span>
 
-        {/* Favorite Button */}
         <FavoriteButton recipe={recipe} />
       </div>
 
-      {/* Content */}
       <div className="p-5">
-        {/* Title */}
         <h3 className="font-serif text-xl font-bold text-secondary-200">
           {recipe.name}
         </h3>
         <div className="flex items-center justify-between mt-2">
-          {/* Cuisine + Difficulty */}
           <div className="mt-2 flex items-center gap-2 text-sm text-tertiary">
             <span>{recipe.cuisine}</span>
             <span>•</span>
             <span>{recipe.difficulty}</span>
           </div>
 
-          {/* Rating */}
           <div className="mt-3 flex items-center gap-2">
             <FaStar className="text-sm text-primary" />
             <span className="text-sm text-primary">{recipe.rating}</span>
@@ -54,7 +47,6 @@ function Card({ recipe }: { recipe: Recipe }) {
             </span>
           </div>
         </div>
-        {/* Recipe Details */}
         <div className="mt-4 grid grid-cols-3 gap-2 border-y border-[#eeeae3] py-3 text-center">
           <div>
             <p className="text-xs text-tertiary">Prep</p>
@@ -78,7 +70,6 @@ function Card({ recipe }: { recipe: Recipe }) {
           </div>
         </div>
 
-        {/* Tags */}
         <div className="my-4 flex flex-wrap gap-2">
           {recipe.tags.slice(0, 3).map((tag) => (
             <span
@@ -90,7 +81,6 @@ function Card({ recipe }: { recipe: Recipe }) {
           ))}
         </div>
 
-        {/* View More */}
         <Link
           href={`/recipes/${recipe.id}`}
           className="text-sm font-bold text-primary hover:text-primary-hover transition hover:underline "

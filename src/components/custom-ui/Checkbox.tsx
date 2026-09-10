@@ -41,7 +41,7 @@ export default function Checkbox({
         className={`grid h-5 w-5 shrink-0 place-items-center rounded-md border transition ${
           checked
             ? "border-secondary-200 bg-secondary-200 text-white"
-            : "border-yellow-50bg-white"
+            : "border-yellow-50 bg-white"
         }`}
       >
         {checked && <FaCheck className="text-[0.625rem]" />}
