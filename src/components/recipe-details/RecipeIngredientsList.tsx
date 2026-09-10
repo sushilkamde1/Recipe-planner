@@ -1,5 +1,4 @@
 import { Recipe } from "@/types/recipe.types";
-import React from "react";
 
 function RecipeIngredientsList({ recipe }: { recipe: Recipe }) {
   return (

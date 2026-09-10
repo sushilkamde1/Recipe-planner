@@ -104,6 +104,17 @@ The application is designed to work across:
 - **React Icons**
 - **react-virtuoso**
 
+## Server and Client Components
+
+The recipe detail route and its data lookup remain Server Components, which lets
+Next.js render the recipe page and its page-specific metadata on the server.
+Interactive components use the `'use client'` directive: `FavoriteButton` needs
+the `useRecipe` context hook and an `onClick` handler, while the planner,
+shopping list, search, and context provider need client-side state or browser
+storage. `Card` does not need its own directive because it is only rendered
+inside an already-client recipe list subtree; client boundaries apply to the
+components imported beneath them.
+
 # Getting Started
 
 Follow the steps below to run this project locally.

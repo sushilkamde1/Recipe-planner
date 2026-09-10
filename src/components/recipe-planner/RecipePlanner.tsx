@@ -1,4 +1,4 @@
-import RecipePlannerClient from "./RecipePlannerClient ";
+import RecipePlannerClient from "./RecipePlannerClient";
 
 function RecipePlanner() {
   return <RecipePlannerClient />;

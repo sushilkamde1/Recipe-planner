@@ -19,7 +19,7 @@ function RecipeDetails({ recipe }: { recipe: Recipe | undefined }) {
   }
 
   return (
-    <main className="min-h-screen bg-yellow-300">
+    <main className="min-h-screen">
       <div className="mx-auto max-w-7xl px-6 pt-8">
         <BackButton />
       </div>

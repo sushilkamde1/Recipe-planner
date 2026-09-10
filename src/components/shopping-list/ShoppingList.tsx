@@ -26,7 +26,7 @@ function ShoppingList() {
     a.label.localeCompare(b.label),
   );
   return (
-    <main className="min-h-screen bg-yellow-300 px-5 py-10 sm:px-8 lg:px-12">
+    <main className="min-h-screen px-5 py-10 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-7xl">
         <BackButton label="Back to planner" />
         <div className="mt-8">

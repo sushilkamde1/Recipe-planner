@@ -57,7 +57,7 @@ function ShoppingCartClient({ recipes }: { recipes: Recipe[] }) {
   };
 
   return (
-    <main className="min-h-screen bg-yellow-300 px-5 py-10 sm:px-8 lg:px-12">
+    <main className="min-h-screen px-5 py-10 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-7xl">
         <BackButton label="Back to ingredients" />
         <div className="flex flex-col justify-between gap-5 mt-8 sm:flex-row sm:items-end">
